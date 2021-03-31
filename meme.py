@@ -18,33 +18,33 @@ reddit = praw.Reddit(client_id=PRAW_CLIENT_ID,
 
 
 
-
-cpu_f = dict(psutil.cpu_freq()._asdict())["current"]
-cpu_p = psutil.cpu_percent()
-disk_t = dict(psutil.disk_usage('/')._asdict())["total"]
-disk_u = dict(psutil.disk_usage('/')._asdict())["used"]
-ram_t = int(dict(psutil.virtual_memory()._asdict())["total"])
-ram_u = int(dict(psutil.virtual_memory()._asdict())["used"])
-
-
-
-text = f"""Server info : 
-cpu percent : {cpu_p}%
-cpu curren freq : {cpu_f} 
------------------------------           
-ram used : {int(ram_u/1048576)} === ram total : {int(ram_t/1048576)} MB
------------------------------
-disk used : {int(disk_u/1048576)} === disk total : {int(disk_t/1048576)} MB 
-"""
+def get_info():
+    cpu_f = dict(psutil.cpu_freq()._asdict())["current"]
+    cpu_p = psutil.cpu_percent()
+    disk_t = dict(psutil.disk_usage('/')._asdict())["total"]
+    disk_u = dict(psutil.disk_usage('/')._asdict())["used"]
+    ram_t = int(dict(psutil.virtual_memory()._asdict())["total"])
+    ram_u = int(dict(psutil.virtual_memory()._asdict())["used"])
 
 
 
+    text = f"""Server info : 
+    cpu percent : {cpu_p}%
+    cpu curren freq : {cpu_f} 
+    -----------------------------           
+    ram used : {int(ram_u/1048576)} === ram total : {int(ram_t/1048576)} MB
+    -----------------------------
+    disk used : {int(disk_u/1048576)} === disk total : {int(disk_t/1048576)} MB 
+    """
 
 
+
+
+#"dankvideos","youtubehaiku"
 
 def get_memes_urls():
 
-    req_subreddits = ["memes", "dankmemes" ,"MemeEconomy" , "ComedyCemetery","PrequelMemes","dankvideos","youtubehaiku"]  # subreddits
+    req_subreddits = ["memes", "dankmemes" ,"MemeEconomy" , "ComedyCemetery","PrequelMemes","ProRetardMemes"]  # subreddits
     meme_list = []
     for req_subreddit in req_subreddits:
         subreddit = reddit.subreddit(req_subreddit)
@@ -71,7 +71,7 @@ event = threading.Event()
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('pls do not start the this is not for public use !')
 def server_info (update: Update, context: CallbackContext) -> None:
-    
+    get_info()
     update.message.reply_text(text)
 
 
