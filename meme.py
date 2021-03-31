@@ -4,6 +4,8 @@ import random
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 import threading
+import psutil
+from telegram.ext.dispatcher import run_async
 
 PRAW_CLIENT_ID ="MhGsIxv8rghQ0Q"
 PRAW_CLIENT_SECRET = "d55OpECjc3c0ZJXZnFMgZmnLQGWUoQ"
@@ -13,6 +15,31 @@ PRAW_USERAGENT = "erun bot V1.0 by /u/e_run_pie"
 reddit = praw.Reddit(client_id=PRAW_CLIENT_ID,
                      client_secret=PRAW_CLIENT_SECRET,
                      user_agent=PRAW_USERAGENT)
+
+
+
+
+cpu_f = dict(psutil.cpu_freq()._asdict())["current"]
+cpu_p = psutil.cpu_percent()
+disk_t = dict(psutil.disk_usage('/')._asdict())["total"]
+disk_u = dict(psutil.disk_usage('/')._asdict())["used"]
+ram_t = int(dict(psutil.virtual_memory()._asdict())["total"])
+ram_u = int(dict(psutil.virtual_memory()._asdict())["used"])
+
+
+
+text = f"""Server info : 
+cpu percent : {cpu_p}%
+cpu curren freq : {cpu_f} 
+-----------------------------           
+ram used : {int(ram_u/1048576)} === ram total : {int(ram_t/1048576)} MB
+-----------------------------
+disk used : {int(disk_u/1048576)} === disk total : {int(disk_t/1048576)} MB 
+"""
+
+
+
+
 
 
 def get_memes_urls():
@@ -42,13 +69,12 @@ event = threading.Event()
 
 
 def start(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /start is issued."""
-    update.message.reply_text('pls do not start the this is not for public use >')
+    update.message.reply_text('pls do not start the this is not for public use !')
+def server_info (update: Update, context: CallbackContext) -> None:
+    
+    update.message.reply_text(text)
 
 
-def help_command(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /help is issued."""
-    update.message.reply_text('pls do not start the this is not for public use >')
 
 def meme(update: Update, context: CallbackContext):
   while True :
@@ -64,16 +90,14 @@ def main():
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
 
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start , run_async=True ))
-    dispatcher.add_handler(CommandHandler("help", help_command))
+    dispatcher.add_handler(CommandHandler("start", start, run_async=True))
+    dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
     dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
 
     updater.start_polling()
 
     updater.idle()
 
-
-    meme()
 
 if __name__ == '__main__':
     main()
