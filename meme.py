@@ -94,6 +94,7 @@ def main():
        dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'runnig again dont forgget to send /memesecret in bot ')
        a=1
        limit.append(a)
+       main()
     else :    
        dispatcher.add_handler(CommandHandler("start", start, run_async=True))
        dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
