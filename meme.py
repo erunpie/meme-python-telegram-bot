@@ -51,7 +51,7 @@ logger = logging.getLogger(__name__)
 
 
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text('pls do not start the bot this is not for public use !')
+    update.message.reply_text('Pls do not start the bot this bot is not for public use !')
 def status (update: Update, context: CallbackContext) -> None:
     update.message.reply_text("bot is online ! be happy ")
 
@@ -71,15 +71,15 @@ def main():
 
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
     dispatcher = updater.dispatcher
-    if not limitation : 
-        dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'i am online now if you are not admin just block bot ')
+    if not limit : 
+        dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'Now bot is on send secret meme ;) ')
         a=1
         limit.append(a)
         main()
     else :
-      dispatcher.add_handler(CommandHandler("start", start, run_async=True))
-      dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
-      dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
+        dispatcher.add_handler(CommandHandler("start", start, run_async=True))
+        dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
+        dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
     
  
     
