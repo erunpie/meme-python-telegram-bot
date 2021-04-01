@@ -4,8 +4,7 @@ import random
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 import threading
-import psutil
-from telegram.ext.dispatcher import run_async
+
 
 PRAW_CLIENT_ID ="MhGsIxv8rghQ0Q"
 PRAW_CLIENT_SECRET = "d55OpECjc3c0ZJXZnFMgZmnLQGWUoQ"
@@ -21,7 +20,7 @@ reddit = praw.Reddit(client_id=PRAW_CLIENT_ID,
 
 def get_memes_urls():
 
-    req_subreddits = ["memes", "dankmemes" , "ComedyCemetery","PrequelMemes","ProRetardMemes","deepfriedmemes", "surrealmemes", "nukedmemes", "bigbangedmemes", "wackytictacs", "bonehurtingjuice"]  # subreddits
+    req_subreddits = ["memes", "dankmemes" , "ComedyCemetery","PrequelMemes","ProRetardMemes"]  # subreddits
     meme_list = []
     for req_subreddit in req_subreddits:
         subreddit = reddit.subreddit(req_subreddit)
@@ -34,11 +33,11 @@ def get_memes_urls():
     return meme_list[:1]
 
 
-  
-  
-  
-  
-  
+
+
+
+
+
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
@@ -71,18 +70,18 @@ def main():
 
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
     dispatcher = updater.dispatcher
-    if not limit : 
+    if not limit :
         dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'Now bot is on send secret meme ;) ')
         a=1
         limit.append(a)
         main()
     else :
         dispatcher.add_handler(CommandHandler("start", start, run_async=True))
-        dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
+        dispatcher.add_handler(CommandHandler("status", status, run_async=True))
         dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
-    
- 
-    
+
+
+
     updater.start_polling()
 
     updater.idle()
@@ -90,4 +89,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
