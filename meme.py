@@ -60,7 +60,8 @@ def meme(update: Update, context: CallbackContext):
         img_url = url_caption[2]
         img_caption = url_caption[1]
         context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
-    event.wait(1800)
+        waitlist=[900,1800,3600,450]
+    event.wait(random.choice(waitlist))
 
 def main():
 
