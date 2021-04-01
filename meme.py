@@ -67,12 +67,12 @@ def main():
 
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
     dispatcher = updater.dispatcher
-    '''if not limit :
-        dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'Now bot is on send secret meme ;) ')
+    limit=[]
+    if not limit: 
+        dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'i am online do not forget to run me again ;) ')
         a=1
         limit.append(a)
-        main()
-    '''
+        
     dispatcher.add_handler(CommandHandler("start", start, run_async=True))
     dispatcher.add_handler(CommandHandler("status", status, run_async=True))
     dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
