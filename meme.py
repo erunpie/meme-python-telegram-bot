@@ -75,10 +75,10 @@ def main():
         a=1
         limit.append(a)
         main()
-    else :
-        dispatcher.add_handler(CommandHandler("start", start, run_async=True))
-        dispatcher.add_handler(CommandHandler("status", status, run_async=True))
-        dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
+    
+    dispatcher.add_handler(CommandHandler("start", start, run_async=True))
+    dispatcher.add_handler(CommandHandler("status", status, run_async=True))
+    dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
 
 
 
