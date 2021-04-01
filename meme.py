@@ -85,15 +85,20 @@ def meme(update: Update, context: CallbackContext):
         img_caption = url_caption[1]
         context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
     event.wait(900)
+limit=[]
 def main():
 
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
-
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start, run_async=True))
-    dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
-    dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
-    dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'runnig again dont forgget to send /memesecret in bot ')
+    if not limit :
+       dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'runnig again dont forgget to send /memesecret in bot ')
+       a=1
+       limit.append(a)
+    else :    
+       dispatcher.add_handler(CommandHandler("start", start, run_async=True))
+       dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
+       dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
+    
     updater.start_polling()
 
     updater.idle()
@@ -101,3 +106,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
