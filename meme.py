@@ -20,7 +20,7 @@ reddit = praw.Reddit(client_id=PRAW_CLIENT_ID,
 
 def get_memes_urls():
 
-    req_subreddits = ["memes", "dankmemes" , "ComedyCemetery","PrequelMemes","ProRetardMemes"]  # subreddits
+    req_subreddits = ["memes", "dankmemes" , "ComedyCemetery","PrequelMemes","ProRetardMemes","Animemes","meme","comedyhomicide","4PanelCringe","dndmemes"]  # subreddits
     meme_list = []
     for req_subreddit in req_subreddits:
         subreddit = reddit.subreddit(req_subreddit)
@@ -31,10 +31,6 @@ def get_memes_urls():
 
     random.shuffle(meme_list)  # to shuffle obtained posts
     return meme_list[:1]
-
-
-
-
 
 
 
@@ -51,7 +47,7 @@ logger = logging.getLogger(__name__)
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Pls do not start the bot this bot is not for public use !')
-def status (update: Update, context: CallbackContext) -> None:
+def status(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("bot is online ! be happy ")
 
 
@@ -65,7 +61,7 @@ def meme(update: Update, context: CallbackContext):
         img_caption = url_caption[1]
         context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
     event.wait(900)
-limit=[]
+
 def main():
 
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
