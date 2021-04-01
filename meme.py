@@ -17,29 +17,6 @@ reddit = praw.Reddit(client_id=PRAW_CLIENT_ID,
                      user_agent=PRAW_USERAGENT)
 
 
-
-def get_info():
-    cpu_f = dict(psutil.cpu_freq()._asdict())["current"]
-    cpu_p = psutil.cpu_percent()
-    disk_t = dict(psutil.disk_usage('/')._asdict())["total"]
-    disk_u = dict(psutil.disk_usage('/')._asdict())["used"]
-    ram_t = int(dict(psutil.virtual_memory()._asdict())["total"])
-    ram_u = int(dict(psutil.virtual_memory()._asdict())["used"])
-
-
-
-    text = f"""Server info : 
-    cpu percent : {cpu_p}%
-    cpu curren freq : {cpu_f} 
-    -----------------------------           
-    ram used : {int(ram_u/1048576)} === ram total : {int(ram_t/1048576)} MB
-    -----------------------------
-    disk used : {int(disk_u/1048576)} === disk total : {int(disk_t/1048576)} MB 
-    """
-
-
-
-
 #"dankvideos","youtubehaiku""MemeEconomy" ,
 
 def get_memes_urls():
@@ -57,6 +34,11 @@ def get_memes_urls():
     return meme_list[:1]
 
 
+  
+  
+  
+  
+  
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
@@ -65,17 +47,16 @@ logger = logging.getLogger(__name__)
 
 
 
-event = threading.Event()
+
 
 
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text('pls do not start the this is not for public use !')
-def server_info (update: Update, context: CallbackContext) -> None:
-    get_info()
-    update.message.reply_text(text)
+    update.message.reply_text('pls do not start the bot this is not for public use !')
+def status (update: Update, context: CallbackContext) -> None:
+    update.message.reply_text("bot is online ! be happy ")
 
 
-
+event = threading.Event()
 def meme(update: Update, context: CallbackContext):
   while True :
     url_caption_list = get_memes_urls()
@@ -85,15 +66,22 @@ def meme(update: Update, context: CallbackContext):
         img_caption = url_caption[1]
         context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
     event.wait(900)
-
+limit=[]
 def main():
 
     updater = Updater("1716073347:AAEqs18P2-oe5oPWVmzUMdpX_RbZMJQeAAw")
     dispatcher = updater.dispatcher
-   
-    dispatcher.add_handler(CommandHandler("start", start, run_async=True))
-    dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
-    dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
+    if not limitation : 
+        dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'i am online now if you are not admin just block bot ')
+        a=1
+        limit.append(a)
+        main()
+    else :
+      dispatcher.add_handler(CommandHandler("start", start, run_async=True))
+      dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
+      dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
+    
+ 
     
     updater.start_polling()
 
