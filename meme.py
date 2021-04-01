@@ -40,11 +40,11 @@ def get_info():
 
 
 
-#"dankvideos","youtubehaiku"
+#"dankvideos","youtubehaiku""MemeEconomy" ,
 
 def get_memes_urls():
 
-    req_subreddits = ["memes", "dankmemes" ,"MemeEconomy" , "ComedyCemetery","PrequelMemes","ProRetardMemes"]  # subreddits
+    req_subreddits = ["memes", "dankmemes" , "ComedyCemetery","PrequelMemes","ProRetardMemes","deepfriedmemes", "surrealmemes", "nukedmemes", "bigbangedmemes", "wackytictacs", "bonehurtingjuice"]  # subreddits
     meme_list = []
     for req_subreddit in req_subreddits:
         subreddit = reddit.subreddit(req_subreddit)
@@ -93,7 +93,7 @@ def main():
     dispatcher.add_handler(CommandHandler("start", start, run_async=True))
     dispatcher.add_handler(CommandHandler("status", server_info, run_async=True))
     dispatcher.add_handler(CommandHandler("memesecret", meme, run_async=True))
-
+    dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'runnig again dont forgget to send /memesecret in bot ')
     updater.start_polling()
 
     updater.idle()
