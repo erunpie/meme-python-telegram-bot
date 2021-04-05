@@ -69,7 +69,7 @@ def main():
     dispatcher = updater.dispatcher
     limit=[]
     if not limit:
-        meme()
+       
         dispatcher.bot.send_message( chat_id='@fadfafd'  ,text = 'i am online do not forget to run me again ;) ')
         a=1
         limit.append(a)
