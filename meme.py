@@ -58,12 +58,9 @@ def meme(update: Update, context: CallbackContext):
     for url_caption in url_caption_list:
         url = url_caption[0]
         img_url = url_caption[2]
-        img_caption = url_caption[1]
-        if url in restrict :
-           meme()
-        else :    
-           context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
-           waitlist=[900,1800,3600,450]
+        img_caption = url_caption[1]  
+        context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
+        waitlist=[900,1800,3600,450]
     event.wait(random.choice(waitlist))
 
 def main():
