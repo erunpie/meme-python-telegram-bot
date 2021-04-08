@@ -50,7 +50,7 @@ def start(update: Update, context: CallbackContext) -> None:
 def status(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("bot is online ! be happy ")
 
-
+restrict = ['https://reddit.com/r/ProRetardMemes/comments/4wmato/fuc_k/' , 'https://reddit.com/r/ProRetardMemes/comments/bn90to/ᵢ_ₐ_ᵣₑₐᵣd_ᵢ_ₐ_ᵣₒfₑᵢₒₐ_ᵣₑₐᵣd_ᵢ_ᵢᵣₑd_fₒᵣ_ₑₒₑ_ₒ_fᵤfᵢ/']
 event = threading.Event()
 def meme(update: Update, context: CallbackContext):
   while True :
@@ -59,8 +59,11 @@ def meme(update: Update, context: CallbackContext):
         url = url_caption[0]
         img_url = url_caption[2]
         img_caption = url_caption[1]
-        context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
-        waitlist=[900,1800,3600,450]
+        if url in restrict :
+           meme()
+        else :    
+           context.bot.send_photo(chat_id='@redditmemee', photo = img_url, caption = img_caption +'\nSource : ' + url +'\n- @redditmemee -' )
+           waitlist=[900,1800,3600,450]
     event.wait(random.choice(waitlist))
 
 def main():
